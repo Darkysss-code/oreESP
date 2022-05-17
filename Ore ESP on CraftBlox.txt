@@ -1,0 +1,55 @@
+local UIS = game:GetService("UserInputService")
+local Plr = game.Players.LocalPlayer
+Plr.Character.Humanoid.WalkSpeed = "35"
+Plr.CharacterAdded:Connect(function()
+	Plr.Character.Humanoid.WalkSpeed = "35"
+end)
+
+UIS.InputBegan:Connect(function(inp, IsGPR)
+	if IsGPR then
+		return
+	end
+	if inp.KeyCode == Enum.KeyCode.Z then
+		local Char = Plr.Character
+		Char.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Nubikstrike1").HumanoidRootPart.CFrame
+	elseif inp.KeyCode == Enum.KeyCode.X then
+		local Plr = game.Players.LocalPlayer
+		local Char = Plr.Character
+		for _,v in pairs(game:GetService("Workspace").Blocks:GetDescendants()) do
+			if v.Name == "RubyOre" then
+				Char.HumanoidRootPart.CFrame = v.CFrame
+			end
+		end
+	elseif inp.KeyCode == Enum.KeyCode.C then
+		local BillBoard = Instance.new("BillboardGui"):Clone()
+		for i,v in pairs(game:GetService("Workspace").Blocks:GetDescendants()) do
+			if v.Name == "DiamondOre" then
+				if v:FindFirstChild("BillboardGui") then
+				else
+					local BillBoard = Instance.new("BillboardGui"):Clone()
+					local Image = Instance.new("ImageLabel", BillBoard)
+					BillBoard.Parent = v
+					BillBoard.Adornee = v
+					BillBoard.ImageLabel.BackgroundTransparency = 1
+					BillBoard.AlwaysOnTop = true
+					BillBoard.Size = UDim2.new(2,0,2,0)
+					Image.Size = UDim2.new(1,0,1,0)
+					Image.Image = "rbxassetid://8176332589"
+				end
+			elseif v.Name == "RubyOre" then
+				if v:FindFirstChild("BillboardGui") then
+				else
+					local BillBoard = Instance.new("BillboardGui"):Clone()
+					local Image = Instance.new("ImageLabel", BillBoard)
+					BillBoard.Parent = v
+					BillBoard.Adornee = v
+					BillBoard.ImageLabel.BackgroundTransparency = 1
+					BillBoard.AlwaysOnTop = true
+					BillBoard.Size = UDim2.new(2,0,2,0)
+					Image.Size = UDim2.new(1,0,1,0)
+					Image.Image = "rbxassetid://8176528126"
+				end
+			end
+		end
+	end
+end)
